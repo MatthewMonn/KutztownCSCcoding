@@ -1,2 +1,2 @@
-Projects from Computer Science One. <b>
+Projects from Computer Science One. <br>
 Freshman year, semester one.
