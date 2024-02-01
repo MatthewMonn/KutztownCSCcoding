@@ -12,7 +12,3 @@
 -Minors: N/A. <br>
 
 -Certificates: Cybersecurity. <br>
-
-
-
-A difference
