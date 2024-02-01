@@ -1,0 +1,70 @@
+
+
+#ifndef H_fraction
+#define H_fraction
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class fractionType
+{
+  
+public:
+  //Constructor
+  fractionType(int num = 0, int den = 1);  
+  bool operator ==(const fractionType& myFrac) const;
+  bool operator !=(const fractionType& myFrac) const;
+  bool operator >=(const fractionType& myFrac) const;
+  bool operator <=(const fractionType& myFrac) const;
+  bool operator >( const fractionType& myFrac) const;
+  bool operator <(const fractionType& myFrac) const; 
+  friend ostream& operator<<(ostream&, const fractionType& f);
+  friend istream& operator >>(istream&, fractionType& f);
+  fractionType operator+(const fractionType& myFrac) const;
+  fractionType operator-(const fractionType& myFrac) const;
+  fractionType operator*(const fractionType& myFrac) const;
+  fractionType operator/(const fractionType& myFrac) const;
+  fractionType operator ++();
+  fractionType operator ++(int);
+  fractionType operator --();
+  fractionType operator --(int); 
+  
+  
+  
+private:
+  int numerator;      //variable to store the numerator
+  int denominator;    //variable to store the denominator
+  
+  
+  //private method to compute and return the greatest
+  //common divisor of the numerator and denominator
+  int gcd() {
+    
+    //assign absolute values of numerator
+    //and denominator into a and b
+    int a = abs(numerator);
+    int b = abs(denominator);
+    
+    //make sure a is greater than b
+    if (a < b)
+      {
+	int temp = a;
+	a = b;
+	b = temp;
+      }
+    
+    //use Euclid's algorithm to find and return
+    //the greatest common divisor
+    while (b != 0) {
+      int temp = b;
+      b = a % b;
+      a = temp;
+    }
+    return a;
+  }
+  
+};
+
+#endif

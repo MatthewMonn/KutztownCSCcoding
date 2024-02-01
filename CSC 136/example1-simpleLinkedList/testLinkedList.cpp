@@ -1,0 +1,32 @@
+#include "linkedList.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+  linkedList myList;
+  myList.insertAtEnd(3);
+  myList.insertAtEnd(5);
+  myList.insertAtEnd(7);
+  myList.insertAtEnd(9);
+
+  myList.insertInFront(1);
+  myList.insertInFront(0); 
+  myList.print();
+
+  cout << "the position of 7 is" << myList.search(7) << endl;
+  cout << "the position of 11 is" << myList.search(11) << endl;
+  //testing deleteNode 
+  myList.deleteNode(7);
+  myList.print();
+  myList.deleteNode(0);
+  myList.print(); 
+
+  //testing copy constructor
+  linkedList yourList(myList);
+  myList.print();
+  yourList.print();
+  myList.insertInFront(25);
+  myList.print();
+  yourList.print(); 
+}
