@@ -1,0 +1,14 @@
+Club Member         | Smalls | Larges | Combos | Total ($) |  Club ($) | Mark's ($) |
+----------------------------------------------------------------------------------- |
+Goku                |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX | 
+Naruto              |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX | 
+Luffy               |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Sailor Moon         |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Saitama             |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Mikasa              |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Spike               |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Vegeta              |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Mamimi Samejima     |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+Deku                |     XX |     XX |     XX |   XXX.XX  |   XXX.XX  |     XXX.XX |
+----------------------------------------------------------------------------------- |
+Total               |    XXX |    XXX |    XXX | XXXXX.XX  | XXXXX.XX  | XXXXXXX.XX |
