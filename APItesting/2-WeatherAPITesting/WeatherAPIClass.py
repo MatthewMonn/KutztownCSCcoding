@@ -31,23 +31,28 @@ class WeatherAPICity:
             print("1: Latitude and longitude of area.")
             print("2: Local time.")
             print("3: Wind data.")
-            print("4: Weather condition.") 
-            print("5: Temperature.")
-            print("6: Precipitation.")
-            print("7: Humidity.")
-            print("8: UV index.") 
-            print("9: Day or night.")
-            print("10: Change City.")
-            print("11: Quit.")
+            print("4: Pressure.")
+            print("5: Weather condition.")
+            print("6: Temperature.")
+            print("7: Precipitation.")
+            print("8: Humidity.")
+            print("9: UV index.")
+            print("10: Day or night.")
+            print("11: Change City.")
+            print("12: Quit.")
             self.Div()
-            MenuChoice = input("[1-11]: ")
+            MenuChoice = input("[1-12]: ")
             if MenuChoice == "1": 
                 self.LatLong() 
             elif MenuChoice == "2": 
                 self.LocalTime()
             elif MenuChoice == "3":
                 self.WindData()
-            elif MenuChoice == "11": 
+            elif MenuChoice == "4":
+                self.Pressure()
+            elif MenuChoice == "5":
+                self.WeatherConditon()
+            elif MenuChoice == "12":
                 print("Quitting Program.")
                 self.Div()
                 break; 
@@ -73,7 +78,25 @@ class WeatherAPICity:
         self.Div()
     def WindData(self):
         self.Div()
+        print("Wind mph: ", self.ResponseJSON['current']['wind_mph'])
+        print("Wind kph: ", self.ResponseJSON['current']['wind_kph'])
+        print("Wind degree: ", self.ResponseJSON['current']['wind_degree'])
+        print("Wind direction: ", self.ResponseJSON['current']['wind_dir'])
         self.Div()
+
+    def Pressure(self):
+        self.Div()
+        print("Pressure in millibars: ", self.ResponseJSON['current']['pressure_mb'])
+        print("Pressure in inches: ", self.ResponseJSON['current']['pressure_in'])
+        self.Div()
+
+    def WeatherConditon(self):
+        self.Div()
+        print("Weather condition: ", self.ResponseJSON['current']['condition']['text'])
+        print("Condition icon: ", self.ResponseJSON['current']['condition']['icon'])
+        print("Condition weather code: ", self.ResponseJSON['current']['condition']['code'])
+        self.Div()
+
     def Div(self): 
         equals = f"{'='*50}"
         print(equals)
