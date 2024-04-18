@@ -45,6 +45,8 @@ class WeatherAPICity:
                 self.LatLong() 
             elif MenuChoice == "2": 
                 self.LocalTime()
+            elif MenuChoice == "3":
+                self.WindData()
             elif MenuChoice == "11": 
                 print("Quitting Program.")
                 self.Div()
@@ -69,7 +71,9 @@ class WeatherAPICity:
         print("Local date and time (unix time): ",self.ResponseJSON['location']['localtime_epoch'])
         print("Time zone name: ",self.ResponseJSON['location']['tz_id'])
         self.Div()
-        
+    def WindData(self):
+        self.Div()
+        self.Div()
     def Div(self): 
         equals = f"{'='*50}"
         print(equals)
