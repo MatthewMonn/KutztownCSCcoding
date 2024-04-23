@@ -1,5 +1,4 @@
-import requests 
-
+import requests
 class WeatherAPICity:
     
     def __init__(self, CityInput,ResponseJSON,Response): 
@@ -52,6 +51,18 @@ class WeatherAPICity:
                 self.Pressure()
             elif MenuChoice == "5":
                 self.WeatherConditon()
+            elif MenuChoice == "6":
+                self.Temperature()
+            elif MenuChoice == "7":
+                self.Precipitation()
+            elif MenuChoice == "8":
+                self.Humidity()
+            elif MenuChoice == "9":
+                self.UVindex()
+            elif MenuChoice == "10":
+                self.DayOrNight()
+            elif MenuChoice == "11":
+                self.ChangeCity()
             elif MenuChoice == "12":
                 print("Quitting Program.")
                 self.Div()
@@ -96,6 +107,39 @@ class WeatherAPICity:
         print("Condition icon: ", self.ResponseJSON['current']['condition']['icon'])
         print("Condition weather code: ", self.ResponseJSON['current']['condition']['code'])
         self.Div()
+
+    def Temperature(self):
+        self.Div()
+        print("Current Temperature (Fahrenheit): ", self.ResponseJSON['current']['temp_f'])
+        print("Feels like (Fahrenheit): ", self.ResponseJSON['current']['feelslike_f'])
+        print("Current Temperature (Celsius): ", self.ResponseJSON['current']['temp_c'])
+        print("Feels like (Celsius): ", self.ResponseJSON['current']['feelslike_c'])
+        self.Div()
+
+    def Precipitation(self):
+        self.Div()
+        print("Precipitation amount in millimeters: ", self.ResponseJSON['current']['precip_mm'])
+        print("Precipitation amount in inches: ", self.ResponseJSON['current']['precip_in'])
+        self.Div()
+    def Humidity(self):
+        self.Div()
+        print("Humidity as percentage: ", self.ResponseJSON['current']['humidity'])
+        self.Div()
+
+    def UVindex(self):
+        self.Div()
+        print("UV Index: ", self.ResponseJSON['current']['uv'])
+        self.Div()
+
+    def DayOrNight(self):
+        self.Div()
+        print("Day[1] or Night[0]: ", self.ResponseJSON['current']['is_day'])
+        self.Div()
+
+    def ChangeCity(self):
+        self.Div()
+        self.CityInput = input("What City would you like to change to? \n")
+        self.RequestCityCurrentWeather()
 
     def Div(self): 
         equals = f"{'='*50}"
