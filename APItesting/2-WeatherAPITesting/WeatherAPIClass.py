@@ -1,12 +1,12 @@
 import requests
 class WeatherAPICity:
     
-    def __init__(self, CityInput,ResponseJSON,Response): 
-        self.CityInput = CityInput
+    def __init__(self, Input,ResponseJSON,Response):
+        self.Input = Input
         self.ResponseJSON = ResponseJSON
         
     def RequestCityCurrentWeather(self): 
-        Response = requests.get("http://api.weatherapi.com/v1/current.json?key=cff5f2a2a125471dadf01403241104&q={}".format(self.CityInput))
+        Response = requests.get("http://api.weatherapi.com/v1/current.json?key=cff5f2a2a125471dadf01403241104&q={}".format(self.Input))
  
         if Response.status_code == 200:
             print("HTTP Status Code:" , Response.status_code,'\n')
@@ -16,9 +16,6 @@ class WeatherAPICity:
         
         
     def printMenu(self):
-        self.Div() 
-        print("Welcome to the terminal based weather application menu.")
-        print("Information obtained is from https://www.weatherapi.com.") 
         self.Div() 
         print("City: ",self.ResponseJSON['location']['name'])
         print("Region: ",self.ResponseJSON['location']['region'])
@@ -138,7 +135,7 @@ class WeatherAPICity:
 
     def ChangeCity(self):
         self.Div()
-        self.CityInput = input("What City would you like to change to? \n")
+        self.Input = input("What input would you like to change to? \n")
         self.RequestCityCurrentWeather()
 
     def Div(self): 
