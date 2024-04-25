@@ -12,8 +12,8 @@ class WeatherAPICity:
             print("HTTP Status Code:" , Response.status_code,'\n')
             self.ResponseJSON = Response.json()
         else:
-            print("Failed to retrieve weather data. HTTP Status Code:", self.Response.status_code)
-        
+            return
+
         
     def printMenu(self):
         self.Div() 
