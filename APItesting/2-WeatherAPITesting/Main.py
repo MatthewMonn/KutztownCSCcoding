@@ -27,7 +27,10 @@ def main():
             CurrentAPI.printMenu()
             break;
         elif Choice == "2":
-            print("Test")
+            Input = input("Location. ")
+            Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}days=5 ".format(Input))
+            ResponseJSON = Response2.json()
+            print(ResponseJSON)
         elif Choice == "3":
             print("Bye.")
             return
