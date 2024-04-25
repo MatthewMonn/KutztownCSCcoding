@@ -1,5 +1,5 @@
 import requests
-class WeatherAPICity:
+class currentWeather:
     
     def __init__(self, Input,ResponseJSON,Response):
         self.Input = Input
