@@ -29,7 +29,6 @@ def main():
                 else:
                     print("Invalid input. Please retry.\n")
             CurrentAPI.printMenu()
-
             break;
         elif Choice == "2":
             print("Enter below either a Latitude & Longitude by format (Lat,Long) , city name , US zip code, UK postcode , ")
