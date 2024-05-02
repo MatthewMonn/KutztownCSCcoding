@@ -40,10 +40,10 @@ def main():
                 Input = input("Input: ")
                 if Input == "Exit":
                     return
-                Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}".format(Input))
+                Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}&days=3".format(Input))
                 ResponseJSON = Response2.json()
                 print(ResponseJSON)
-
+                #CurrentAPI = currentWeather(Input, None, None)
         elif Choice == "3":
             print("Bye.")
             return
