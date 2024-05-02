@@ -14,23 +14,36 @@ def main():
             print("Enter below either a Latitude & Longitude by format (Lat,Long) , city name , US zip code, UK postcode , ")
             print("Canada postal code , metar by format (metar:<metar code>) , iata by format (iata:<3 digit airport code) ,  ")
             print("IP lookup by format (auto:ip) , or IP address(IPv4 and IPv6 supported) \n")
+            print("Enter (Exit) to exit the application. \n")
             while True:
                 Input = input("Input: ")
+                if Input == "Exit":
+                    return;
                 print("API communicating with the city's current weather... \n")
 
                 CurrentAPI = currentWeather(Input, None, None)
                 CurrentAPI.RequestCityCurrentWeather()
+
                 if CurrentAPI.ResponseJSON is not None:
                     break  # Break the loop if the input is valid
                 else:
                     print("Invalid input. Please retry.\n")
             CurrentAPI.printMenu()
+
             break;
         elif Choice == "2":
-            Input = input("Location. ")
-            Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}days=5 ".format(Input))
-            ResponseJSON = Response2.json()
-            print(ResponseJSON)
+            print("Enter below either a Latitude & Longitude by format (Lat,Long) , city name , US zip code, UK postcode , ")
+            print("Canada postal code , metar by format (metar:<metar code>) , iata by format (iata:<3 digit airport code) ,  ")
+            print("IP lookup by format (auto:ip) , or IP address(IPv4 and IPv6 supported) \n")
+            print("Enter (Exit) to exit the application. \n")
+            while True:
+                Input = input("Input: ")
+                if Input == "Exit":
+                    return
+                Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}".format(Input))
+                ResponseJSON = Response2.json()
+                print(ResponseJSON)
+
         elif Choice == "3":
             print("Bye.")
             return
