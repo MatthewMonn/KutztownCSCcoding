@@ -510,4 +510,3 @@ class InvisibleMutator extends PImageMutator {
     return(result);
   }
 }
-

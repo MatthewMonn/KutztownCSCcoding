@@ -2,10 +2,10 @@
 /************************************************************
 /* Sketch: CSC220Fall2023Final6Maze, optional extra credit project.
 /* STUDENT MUST submit projects 1-5 in order to use this as extra credit.
-/* Author: STUDENT NAME
+/* Author: Matthew Monn
 /* Creation Date: 11/16/2023
 /* Due Date: Friday 12/15/2023 at 11:59 PM
-/* Course: 
+/* Course: CSC 220
 /* Professor Name: Dr. Parson
 /* Assignment: 6 (optional).
 /* Purpose: Tunnel a 2D maze, either interactively or semi-automatically.
@@ -30,8 +30,8 @@ boolean isAutoMode = false ;
 int autoModeXspeed = 0, autoModeYspeed = 0, autoModeXendpoint = 0, autoModeYendpoint = 0 ;
 final int WallSize = 25 ;  // Do not go beyond WallSize*2 except to tunnel out to right side.
 // STUDENT 5% Set your own spaceColor & wallColor that differ from mine, using RGB
-final int spaceColor = color(0, 128, 128);  // Color outside the maze in RGB, and tunnel color.
-final int wallColor = color(128, 0, 0);   // Color of the walls.
+final int spaceColor = color(105, 0, 255);  // Color outside the maze in RGB, and tunnel color.
+final int wallColor = color(3, 255, 12);   // Color of the walls.
 PImage excavator = null ;
 
 void setup() {
@@ -47,6 +47,7 @@ void setup() {
   noStroke();
   imageMode(CENTER);
   // STUDENT 5% load your image file into excavator.
+  excavator = loadImage("worm.jpg"); //loading in image of worm. Source: https://www.redbubble.com/i/magnet/Cute-cartoon-green-worm-by-Sandytov/18951278.TBCTK
 }
 
 boolean firstTime = true ; // ADDED 12/8 see start of draw() function below
@@ -64,6 +65,26 @@ void draw() {
     noStroke();
     firstTime = false ;
   }
+  push(); 
+  rectMode(CENTER); 
+  fill(spaceColor); // Part 1
+  noStroke();
+  if (isAutoMode) { //Part 2
+   if(excavatorX == autoModeXendpoint && excavatorY == autoModeYendpoint) {
+    isAutoMode = false;  
+   }
+   else 
+     excavatorX += autoModeXspeed; 
+     excavatorY += autoModeYspeed; 
+  }
+  rect(excavatorX , excavatorY , WallSize, WallSize); //drawing the rectangle centered as it eats the shape. Part 3.
+  if (excavator != null) { //error checker. 
+    float excavatorSize = WallSize * .9; // kept as .9 so it doesn't glitch, largest fraction. 
+    image(excavator, excavatorX, excavatorY, excavatorSize, excavatorSize); //image drawn with correct sizes. 
+    pop();
+  }
+  keyPolled(); // Call function to handle key input. Part 4. 
+  
   /* STUDENT 30% of project:
     1. set the fill color to spaceColor, with no stroke.
     2. if sketch is in isAutoMode mode
@@ -81,6 +102,23 @@ void draw() {
 
 void keyPolled() {
   if (keyPressed) {
+    if (!isAutoMode) { // Check if the sketch is NOT already in isAutoMode
+      if (key == CODED) { //key mapping. 
+        if (keyCode == LEFT) {
+          excavatorX = excavatorX - 1;
+          excavatorX = constrain(excavatorX, max(excavatorX,WallSize * 2), width - 1); //changed from min to max, prevents it from exiting maze.
+        } else if (keyCode == RIGHT) {
+          excavatorX = excavatorX + 1;
+          excavatorX = constrain(excavatorX, 0, width - 1);
+        } else if (keyCode == UP) {
+          excavatorY = excavatorY - 1;
+          excavatorY = constrain(excavatorY, WallSize * 2, height - WallSize * 2);
+        } else if (keyCode == DOWN) {
+          excavatorY = excavatorY + 1;
+          excavatorY = constrain(excavatorY, 0, height - WallSize * 2);
+        }
+      }
+    }
     /* START OF STUDENT CODE, 25% of project:
       If the key is coded and sketch is NOT already in isAutoMode
           If it is LEFT
@@ -107,6 +145,48 @@ int [][] XYdeltas = {
 };
 
 void keyPressed() {
+  if (key == 'a' && !isAutoMode) { // Check if key is 'a' and sketch is NOT already in isAutoMode
+    isAutoMode = true;
+    
+    // Initialize local int XYdeltaIndex to a random number between 0 and XYdeltas.length-1
+    int XYdeltaIndex = int(random(0, XYdeltas.length - 1));
+    
+    // Set global autoModeXspeed to XYdeltas[XYdeltaIndex][0]
+    autoModeXspeed = XYdeltas[XYdeltaIndex][0];
+    
+    // Set global autoModeYspeed to XYdeltas[XYdeltaIndex][1]
+    autoModeYspeed = XYdeltas[XYdeltaIndex][1];
+    
+    if (autoModeXspeed != 0) {
+      // Set autoModeYendpoint equal to excavatorY
+      autoModeYendpoint = excavatorY;
+      
+      // Set autoModeXendpoint equal to excavatorX PLUS (autoModeXspeed TIMES a random number between WallSize and WallSize*10)
+      autoModeXendpoint = excavatorX + (autoModeXspeed * int(random(WallSize, WallSize*10))); 
+      // Constrain autoModeXendpoint within the specified range
+      if (autoModeXendpoint < min(WallSize*2, excavatorX)) {
+        autoModeXendpoint = constrain(autoModeXendpoint, max(autoModeXendpoint,WallSize * 2), width - 1);
+      } else if (autoModeXendpoint >= width) {
+        autoModeXendpoint = width - 1;
+        if (excavatorX >= width) {
+          excavatorX = width - 1;
+        }
+      }
+    } else { // autoModeXspeed is equal to 0
+      // Set autoModeXendpoint equal to excavatorX
+      autoModeXendpoint = excavatorX;
+      
+      // Set autoModeYendpoint equal to excavatorY PLUS (autoModeYspeed TIMES a random number between WallSize and WallSize*10)
+      autoModeYendpoint = excavatorY + (autoModeYspeed * int(random(WallSize, WallSize*10)));
+      
+      // Constrain autoModeYendpoint within the specified range
+      if (autoModeYendpoint < WallSize*2) {
+        autoModeYendpoint = WallSize*2;
+      } else if (autoModeYendpoint >= height - WallSize*2) {
+        autoModeYendpoint = max(height - WallSize*2, excavatorY);
+      }
+    }
+  }
   /* STUDENT CODE, 30% of project:
     If they key is 'a' and sketch is NOT already in isAutoMode
       Set global isAutoMode to true
@@ -133,4 +213,3 @@ void keyPressed() {
           Set autoModeYendpoint to the larger of height-WallSize*2 and excavatorY
   */
 }
-

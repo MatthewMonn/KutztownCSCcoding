@@ -1,9 +1,9 @@
 /************************************************************
-/* Author: STUDENT NAME: 
-/* Permission to share in Rohrbach Library and YouTube (YES or NO):
+/* Author: STUDENT NAME: Matthew Monn
+/* Permission to share in Rohrbach Library and YouTube (YES or NO): YES
 /* Creation Date: 11/21/2023
 /* Due Date: Thursday 12/14/2023
-/* Course: 
+/* Course: CSC 220
 /* Professor Name: Dr. Parson
 /* Assignment: 5.
 /* Purpose: Create video for installation with credit in Rohrbach Library & YouTube.
@@ -27,7 +27,7 @@
   B toggle drawBackground() background call
   c toggle clipping circle
   C toggle clipping square
-
+  
   p toggles painting on/off, i.e., no background command in draw() when on
   e toggles echo on/off, i.e., take snapshot at end of draw() when on, display at start of draw()
   x toggles reflect on/off anything painted around the x axis (reflect via scale(1,-1)).
@@ -65,14 +65,26 @@
   1.    Hold shift and hit the “+” key.
   2.    Release shift and hit the ‘t’ key.
   3.    Hit the Enter key when you are ready for this mutator to take effect.
+  
+  Image Sources:
+  EgyptLebron.jpg https://www.tiktok.com/discover/ancient-egypt-lebron
+  DiscoLebron.jpg https://www.youtube.com/watch?v=tOg6RJinNPo
+  EmoLebron.jpg https://www.tiktok.com/@ur_owner.6/video/7356818120541179182
+  DarkLebron.jpg https://imgflip.com/m/Vibe_Zone/tag/lebonbon+jos
+  JuiceLebron.jpg https://www.tiktok.com/@meemstacr/video/7352232714654862638
+  LebronOrig.jpg https://tuna.voicemod.net/sound/45d4f79c-5113-4c1c-8494-8043b6a87835
+  WaluigiLebron.jpeg https://www.tiktok.com/discover/Waluigi-pinball-you-are-my-sunshine
+  CommanderLebron.jpg https://www.tiktok.com/@amenwyd._/video/7351589728262688042
+  CowboyLebron.jpg https://www.youtube.com/watch?v=rcm1Uh-mlT8
+  Sunshine.jpg https://soundcloud.com/icedestiny-1/let-the-sunsine-into-your-heart-extended-version-hard-version
 */
 
-boolean IS_PRINTING_COMMAND = true ;  // STUDENT set to false after some practice!!!
+boolean IS_PRINTING_COMMAND = false ;  // STUDENT set to false after some practice!!!
 // STUDENT: Replace my name with yours. Add a comment giving me permission to include
 //          in Rohrbach Library installation.
-final String CREDIT = "Dr. Dale Parson, CSC220, Fall 2023";
-final String KeyRecordingFile = null ; //"key_recording.txt" ; // Make null to skip recording/playback
-boolean isRecording = true ;  // STUDENT MUST CHANGE THIS TO false FOR PLAYBACK
+final String CREDIT = "MatthewMonn, CSC220, Spring 2024";
+final String KeyRecordingFile = "key_recording.txt" ; //"key_recording.txt" ; // Make null to skip recording/playback
+boolean isRecording = false;  // STUDENT MUST CHANGE THIS TO false FOR PLAYBACK
 SortedMap<Integer,Character> playbackSequence = null ; // new TreeMap<Long,Character>
 
 import java.util.* ;  // https://docs.oracle.com/javase/8/docs/api/index.html?java/util/List.html
@@ -348,36 +360,125 @@ void move() {
 // STUDENT Create your own unique drawBackground,
 // starting with push() and ending with pop(), and tes it
 // using the 'B' key.
+float fgndRotate2 = 0 ;
 void drawBackground() {
   push();
-  rectMode(CENTER);
-  colorMode(RGB, 255, 255, 255, 255);
-  fill(0, 255, 255);
-  rect(-width/4-width/8, 0, 50, 50);
-  rect(width/4+width/8, 0, 50, 50);
-  rect(0, -height/4-height/8, 50, 50);
-  rect(0, height/4+height/8, 50, 50);
+  PImage backgrounds = loadImage("Sunshine.jpg"); //heart image. 
+  imageMode(CENTER);
+  image(backgrounds,800,0,300,300); //placing of image when called.
+  image(backgrounds,-800,0,300,300);
+  PImage test,test2,test3,test4,test5; //The code below places images in a plus sign configuration and rotates them.
+  test = loadImage("EgyptLebron.jpg");
+  test2 = loadImage("DarkLebron.jpg"); 
+  test3 = loadImage("JuiceLebron.jpg");
+  test4 = loadImage("CommanderLebron.jpg");
+  test5 = loadImage("LebronOrig.jpg");
+  rotate(fgndRotate2); //rotates all the images.
+  image(test, 0, 0, 300, 300); 
+  image(test2, 0, 350, 300, 300);
+  image(test3, 0, -350, 300, 300);
+  image(test4, -400, 0, 300, 300);
+  image(test5, 400, 0, 300 ,300);
+  fgndRotate2 = (fgndRotate2 + .01) % 360 ; //equation for rotating. 
   pop();
 }
 
 // STUDENT Create your own unique drawForeground,
 // starting with push() and ending with pop(), and tes it
 // using the 'F' key.
-int fgndColor = 0 ;
+int fgndColor = 0 ; //declared new color and rotates per shape.
 float fgndRotate = 0 ;
+int fgndColor1 = 0 ;
+float fgndRotate1 = 0 ;
+int fgndColor3 = 0 ;
+float fgndRotate3 = 0 ;
+
 void drawForeground() {
+  push();
+  //translate(width / 2, height / 2);
   push();
   noFill();
   colorMode(HSB, 360, 100, 100, 100);
   stroke(fgndColor, 100, 100);
   strokeWeight(1);
-  rotate(fgndRotate);
-  ellipse(0,0,1000,750);
-  fgndColor = (fgndColor + 1) % 360 ;
-  fgndRotate = (fgndRotate + 10) % 360 ;
-  pop();
+  rotate(radians(fgndRotate));
+  
+  // Number of points for the star
+  int numPoints = 5;
+  float angleIncrement = TWO_PI / numPoints;
+  float halfAngle = angleIncrement / 2.0;
+  
+  // Calculate outer and inner radius of the star
+  float outerRadius = 200;
+  float innerRadius = outerRadius * 0.5; // Adjust this value for different proportions
+  
+  // Draw star
+  beginShape();
+  for (float angle = 0; angle < TWO_PI; angle += angleIncrement) {
+    float x = cos(angle) * outerRadius;
+    float y = sin(angle) * outerRadius;
+    vertex(x, y);
+    x = cos(angle + halfAngle) * innerRadius;
+    y = sin(angle + halfAngle) * innerRadius;
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+  
+  // Update parameters
+  fgndColor = (fgndColor + 1) % 360;
+  fgndRotate = (fgndRotate + 1) % 360;
+  
+  pop(); // Restore original drawing state
+  pop(); // Restore original drawing state
+  push();
+  push();
+  noFill();
+  colorMode(HSB, 360, 100, 100, 100);
+  stroke(fgndColor, 100, 100);
+  strokeWeight(1);
+  rotate(radians(fgndRotate1));
+  
+  // Golden ratio calculation
+  float phi = (1 + sqrt(5)) / 2; // Golden ratio
+  
+  // Calculate ellipse dimensions
+  float a = 1000;
+  float b = a / phi;
+  
+  // Draw ellipse
+  ellipse(0, 0, a, b);
+  
+  // Update parameters
+  fgndColor1 = (fgndColor1 + 1) % 360;
+  fgndRotate1 = (fgndRotate1 + 1) % 360;
+  
+  pop(); // Restore original drawing state
+  pop(); // Restore original drawing state
+  push();
+  push();
+  noFill();
+  colorMode(HSB, 360, 100, 100, 100);
+  stroke(fgndColor, 100, 100);
+  strokeWeight(1);
+  rotate(radians(fgndRotate3));
+  
+  // Golden ratio calculation
+  float phi1 = (1 + sqrt(5)) / 2; // Golden ratio
+  
+  // Calculate ellipse dimensions
+  float a1 = 700;
+  float b1 = a1 / phi1;
+  
+  // Draw ellipse
+  ellipse(0, 0, a1, b1);
+  
+  // Update parameters
+  fgndColor3 = (fgndColor3 - 1) % 360;
+  fgndRotate3 = (fgndRotate3 - 1) % 360;
+  
+  pop(); // Restore original drawing state
+  pop(); // Restore original drawing state
 }
-
 PImage takeScreenShot() {
   PImage result = createImage(width, height, ARGB);
   result.loadPixels();
