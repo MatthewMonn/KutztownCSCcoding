@@ -16,7 +16,7 @@ def main():
             print("IP lookup by format (auto:ip) , or IP address(IPv4 and IPv6 supported) \n")
             print("Enter (Exit) to exit the application. \n")
             while True:
-                Input = input("Input: ")
+                Input = input("Input: ")1
                 if Input == "Exit":
                     return;
                 print("API communicating with the city's current weather... \n")

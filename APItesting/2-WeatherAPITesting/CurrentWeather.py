@@ -60,7 +60,7 @@ class currentWeather(Weather):
             elif MenuChoice == "10":
                 self.DayOrNight()
             elif MenuChoice == "11":
-                self.ChangeCity()
+                self.ChangeInput()
             elif MenuChoice == "12":
                 print("Quitting Program.")
                 self.Div()
@@ -134,7 +134,7 @@ class currentWeather(Weather):
         print("Day[1] or Night[0]: ", self.ResponseJSON['current']['is_day'])
         self.Div()
 
-    def ChangeCity(self):
+    def ChangeInput(self):
         self.Div()
         self.Input = input("What input would you like to change to? \n")
         self.RequestCityCurrentWeather()
