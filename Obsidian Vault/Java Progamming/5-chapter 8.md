@@ -1,0 +1,26 @@
+**Multidimensional Arrays** 
+![[Pasted image 20240219151431.png]]
+![[Pasted image 20240219151446.png]]
+![[Pasted image 20240219151558.png]]
+![[Pasted image 20240219151655.png]]
+![[Pasted image 20240219151810.png]]
+![[Pasted image 20240219152143.png]]
+![[Pasted image 20240219152330.png]]
+![[Pasted image 20240219152506.png]]
+![[Pasted image 20240219152704.png]]
+![[Pasted image 20240219152754.png]]
+![[Pasted image 20240219152841.png]]
+![[Pasted image 20240219153018.png]]
+![[Pasted image 20240219153236.png]]
+![[Pasted image 20240219153916.png]]
+![[Pasted image 20240219153922.png]]
+![[Pasted image 20240219153928.png]]
+![[Pasted image 20240219153944.png]]
+![[Pasted image 20240219153949.png]]
+![[Pasted image 20240219153955.png]]
+![[Pasted image 20240219153959.png]]
+![[Pasted image 20240219154005.png]]
+
+**Next Lecture** 
+[[6-chapter9]]
+
