@@ -1,6 +1,6 @@
 import requests
 from CurrentWeather import currentWeather
-
+from ForecastWeather import ForecastWeather
 def main():
     print("Welcome to the terminal based weather application menu.")
     print("Information obtained is from https://www.weatherapi.com.")
@@ -16,7 +16,7 @@ def main():
             print("IP lookup by format (auto:ip) , or IP address(IPv4 and IPv6 supported) \n")
             print("Enter (Exit) to exit the application. \n")
             while True:
-                Input = input("Input: ")1
+                Input = input("Input: ")
                 if Input == "Exit":
                     return;
                 print("API communicating with the city's current weather... \n")
@@ -39,10 +39,14 @@ def main():
                 Input = input("Input: ")
                 if Input == "Exit":
                     return
-                Response2 = requests.get("http://api.weatherapi.com/v1/forecast.json?key=cff5f2a2a125471dadf01403241104&q={}&days=3".format(Input))
-                ResponseJSON = Response2.json()
-                print(ResponseJSON)
-                #CurrentAPI = currentWeather(Input, None, None)
+                print("API communicating with the city's current weather... \n")
+                ForeCastAPI = ForecastWeather(Input, None, None)
+                ForeCastAPI.RequestForecastWeather()
+                if ForeCastAPI.ResponseJSON is not None:
+                    break
+                else:
+                    print("Invalid input. Please retry.\n")
+            ForeCastAPI.printMenu()
         elif Choice == "3":
             print("Bye.")
             return
