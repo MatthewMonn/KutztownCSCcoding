@@ -17,6 +17,15 @@ class ForecastWeather(Weather):
 
     def printMenu(self):
         self.Div()
+        print("City: ", self.ResponseJSON['location']['name'])
+        print("Region: ", self.ResponseJSON['location']['region'])
+        print("Country: ", self.ResponseJSON['location']['country'])
+        print("Last Updated: ", self.ResponseJSON['current']['last_updated'])
+        self.Div()
+        while True:
+            print("What information based in", self.ResponseJSON['location']['name'], "are you looking for?")
+
+            break;
 
     def Div(self):
         equals = f"{'=' * 50}"
